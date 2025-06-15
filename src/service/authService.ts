@@ -1,9 +1,9 @@
-import { AuthResponse, LoginData, RegisterData } from "@/types/auth";
+import { AuthResponse, LoginData, RegisterData, User, UserCreateResponse } from "@/types/auth";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 export const authService = {
-  async register(data: RegisterData): Promise<AuthResponse> {
+  async register(data: RegisterData): Promise<UserCreateResponse> {
     const response = await fetch(`${API_BASE_URL}/auth`, {
       method: 'POST',
       headers: {

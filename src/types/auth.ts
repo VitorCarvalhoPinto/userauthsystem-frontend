@@ -4,6 +4,13 @@ export interface User {
   email: string;
 }
 
+export interface UserCreateResponse {
+  id: string;
+  name: string;
+  email: string;
+  token: string;
+}
+
 export interface AuthResponse {
   token: {
     id: string;
@@ -21,5 +28,5 @@ export interface LoginData {
 export interface RegisterData {
   name: string;
   email: string;
-  password: string;
+  passwordHash: string;
 }

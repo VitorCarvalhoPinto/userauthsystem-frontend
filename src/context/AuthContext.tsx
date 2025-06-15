@@ -1,6 +1,6 @@
 'use client';
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { User, AuthResponse, LoginData, RegisterData } from '../types/auth';
+import { User, AuthResponse, LoginData, RegisterData, UserCreateResponse } from '../types/auth';
 import { authService } from '@/service/authService';
 
 interface AuthContextType {
@@ -49,15 +49,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const register = async (data: RegisterData) => {
     try {
-      const response: AuthResponse = await authService.register(data);
+      const response: UserCreateResponse = await authService.register(data);
       const userData: User = {
-        id: response.token.id,
-        name: response.token.name,
-        email: response.token.email,
+        id: response.id,
+        name: response.name,
+        email: response.email,
       };
       setUser(userData);
-      setToken(response.token.token);
-      localStorage.setItem('token', response.token.token);
+      setToken(response.token);
+      localStorage.setItem('token', response.token);
       localStorage.setItem('user', JSON.stringify(userData));
     } catch (error) {
       throw error;
